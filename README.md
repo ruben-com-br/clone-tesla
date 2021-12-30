@@ -488,3 +488,325 @@ background-image: ${props => `url("/images/${props.bgImage}")`}
 ```js
     { rightBtnText &&
 ```
+# coloque logo
+1:01:00 substitua Header
+```js
+import React from 'react'
+import styled from 'styled-components'
+
+function Header() {
+    return (
+        <Container>
+            <a>
+                <img src="/images/logo.svg" alt="" />
+            </a>
+
+            <Menu>
+
+            </Menu>
+        </Container>
+    )
+}
+
+export default Header
+
+const Container = styled.div`
+    min-height: 60px;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+`
+
+const Menu = styled.div`
+
+`
+```
+1:08:00  Edit App, retire comentários
+```js
+    <Header />
+```
+# coloque menu
+1:09:00  Add Header
+```js
+<a href="#">Model S</a>
+<a href="#">Model 3</a>
+<a href="#">Model X</a>
+<a href="#">Model Y</a>
+```
+rode
+
+# menu css
+1:12:00 Add index.css
+```js
+a {
+    text-decoration: none;
+}
+```
+
+1:14:00 Add Header.js Menu
+```js
+display: flex;
+align-items: center;
+
+a {
+    font-weight: 600;
+    text-transofrm: uppercase;
+    padding: 0 10px;
+    flex-wrap: nowrap;
+}
+```
+
+1:17:00 Add Header.js Container
+```js
+top: 0;
+left: 0;
+right: 0;
+```
+
+# menu Direita
+
+1:19:00 Add Header.js
+```js
+<RightMenu>
+    <a href="#">Shop</a>
+    <a href="#">Tesla Account</a>
+</RightMenu>
+```
+1:21:00 Add Header.js RightMenu
+```js
+    a {
+        font-weight: 600;
+        text-transofrm: uppercase;
+        margin-right: 10px;
+    }
+```
+
+# icon menu
+1:22:00 Add Header.js
+```js
+    import MenuIcon from '@material-ui/icons/Menu';
+```
+1:22:00 Istalar @material-ui
+```js
+    yarn add @material-ui/core
+    yarn add @material-ui/icons
+```
+```js
+    npm install @material-ui/core
+    npm install @material-ui/icons
+```
+1:26:00
+```js
+    <CustomMenu />
+```
+
+1:27:00
+```js
+const CustomMenu = styled(MenuIcon)`
+    cursor: pointer
+`
+```
+
+1:27:00
+```js
+    @media(max-width: 768px){
+        display: none;
+    }
+```
+# install reveal
+1:28:00
+```js
+    npm i react-reveal --save
+```
+
+1:30:00 Add Section
+```js
+    import Fade from 'react-reveal/Fade'
+```
+1:31:00 Add Section
+```js
+    <Fade bottom>
+    </Fade>
+```
+# BurgerNav
+1:32:00 Add Header.js
+```js
+    <BurgerNav>
+        <li><a href='#'>Existing Inventory</a></li>
+        <li><a href='#'>Used Inventory</a></li>
+        <li><a href='#'>Cybertruck</a></li>
+        <li><a href='#'>Roadaster</a></li>
+        <li><a href='#'>Existing Inventory</a></li>
+        <li><a href='#'>Existing Inventory</a></li>
+        <li><a href='#'>Existing Inventory</a></li>
+    </BurgerNav>
+```
+
+1:35:00 Add Header.js
+```js
+const BurgerNav = styled.div`
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: white;
+    width: 300px;
+    z-index: 100;
+`
+```
+
+1:36:00 Add Section.js Wrap
+```js
+    z-index: 10;
+```
+
+1:37:00 Add Section.js ItemText
+```js
+    z-index: -1;
+```
+
+1:38:00 Add Home.js Container
+```js
+    z-index: -1;
+```
+
+1:39:00 Add Header.js Container
+```js
+    z-index: 16;
+    list-style: none;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    li {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, .2);
+
+        a {
+            font-weight: 600;
+        }
+    }
+```
+1:44:00 Add Header CloseIcon;
+```js
+    import CloseIcon from '@material-ui/icons/Close'
+```
+
+```js
+    <CustomClose />
+```
+
+```js
+const CustomClose = styled(CloseIcon)`
+    cursor: pointer;
+`
+```
+
+```js
+<CloseWrapper>
+    <CustomClose />
+</CloseWrapper>
+```
+
+```js
+const CloseWrapper = styled.div`
+   display: flex;
+   justify-content: flex-end;
+`
+```
+
+1:44:00
+```js
+, {useState}
+```
+
+1:49:00
+```js
+    const [burgerStatus, setBurgerStatus] = useState(false);
+```
+
+1:49:30
+```js
+<BurgerNav show={burgerStatus}>
+```
+
+1:50:00 BurgerNav
+```js
+transform: ${props => props.show ? 'translateX(100%)' : 'translateX(0)'};
+```
+
+1:53:00
+```js
+<CustomMenu onClick={()=>setBurgerStatus(true)} />
+<CustomMenu onClick={()=>setBurgerStatus(true)} />
+```
+1:55:00 BurgerNav
+```js
+transition: transform 0.2s;
+```
+
+1:58:00 Criar Pasta
+```js
+md .\src\features\car
+```
+
+1:58:30 Deletar Pasta Counter
+```js
+rmdir .\src\features\Counter\ 
+```
+
+1:59:00 Criar arquivo
+```js
+carSlice.js
+```
+1:59:00 Add carSlice.js
+```js
+import { createSlice } from "@reduxjs/toolkit"
+
+const initialState = {
+    cars: [ "Model S", "Model 3", "Model X", "Model y"]
+}
+
+const carslice = createSlice({
+    name: "car",
+    initialState,
+    reducers: {}
+})
+
+export const selectCars = state => state.car.carsy
+
+export default carslice. reducer
+```
+
+2:03:00 Swap store.js
+```js
+import carReducer from '../features/car/carSlice'
+```
+```js
+car: carReducer,
+```
+
+2:05:00 Swap store.js
+```js
+import {selectCars} from '../features/car/carSlice'
+```
+```js
+import {useSelector} from 'react-redux'
+```
+```js
+const cars = useSelector(selectCars)
+```
+2:08:00
+```js
+{cars && cars.map((car, index)=>(
+    <a key={index} href="#">{car}</a>
+))}
+```
+
+2:09:00
+```js
+{cars && cars.map((car, index) => (
+    <li key={index} href="#">{car}</li>
+))}
+```
